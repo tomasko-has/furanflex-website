@@ -11,7 +11,7 @@ export default function Page() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <TrustSection />
+      
       <ServicesSection />
       <BenefitsSection />
       

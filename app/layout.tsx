@@ -4,9 +4,9 @@ import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-// <CHANGE> Using Inter for modern industrial look and JetBrains Mono for technical elements
-const inter = Inter({ subsets: ["latin"] })
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
+// Using Inter for modern industrial look and JetBrains Mono for technical elements
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
   title: "FuranFlex CZ - Kompozitní vložky pro komíny a svody",
@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs">
-      <body className={`font-sans antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

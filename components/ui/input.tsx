@@ -19,4 +19,3 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
 }
 
 export { Input }
-import { Factory, Wind } from "lucide-react"

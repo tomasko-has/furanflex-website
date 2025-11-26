@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* <CHANGE> Industrial blue and white theme with strong contrast */
+  /* Industrial blue and white theme with strong contrast */
   --background: oklch(1 0 0); /* Pure white */
   --foreground: oklch(0.145 0 0); /* Deep black */
   --card: oklch(0.99 0 0); /* Off-white */
@@ -41,7 +41,7 @@
 }
 
 .dark {
-  /* <CHANGE> Dark mode with blue accents on black */
+  /* Dark mode with blue accents on black */
   --background: oklch(0.12 0 0); /* Near black */
   --foreground: oklch(0.98 0 0); /* Near white */
   --card: oklch(0.16 0 0);
@@ -123,5 +123,9 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Added smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
   }
 }

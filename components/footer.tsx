@@ -16,22 +16,22 @@ export function Footer() {
             <h4 className="font-bold mb-4">Služby</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/destove-svody" className="opacity-80 hover:opacity-100 transition-opacity">
                   Dešťové svody
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/kominy" className="opacity-80 hover:opacity-100 transition-opacity">
                   Komíny na dřevo
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/kominy" className="opacity-80 hover:opacity-100 transition-opacity">
                   Komíny na plyn
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/#sluzby" className="opacity-80 hover:opacity-100 transition-opacity">
                   Vzduchotechnika
                 </Link>
               </li>
@@ -42,22 +42,22 @@ export function Footer() {
             <h4 className="font-bold mb-4">O nás</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/#technologie" className="opacity-80 hover:opacity-100 transition-opacity">
                   O technologii
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/#realizovane-projekty" className="opacity-80 hover:opacity-100 transition-opacity">
                   Reference
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/#vyhody" className="opacity-80 hover:opacity-100 transition-opacity">
                   Certifikáty
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/#kontakt" className="opacity-80 hover:opacity-100 transition-opacity">
                   Kontakt
                 </Link>
               </li>
@@ -77,10 +77,10 @@ export function Footer() {
         <div className="border-t border-accent-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-80">
           <div>© 2025 FuranFlex CZ. Všechna práva vyhrazena.</div>
           <div className="flex gap-6">
-            <Link href="#" className="hover:opacity-100 transition-opacity">
+            <Link href="/#kontakt" className="hover:opacity-100 transition-opacity">
               Ochrana osobních údajů
             </Link>
-            <Link href="#" className="hover:opacity-100 transition-opacity">
+            <Link href="/#kontakt" className="hover:opacity-100 transition-opacity">
               Obchodní podmínky
             </Link>
           </div>

@@ -61,10 +61,12 @@ export default function KominyPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="text-base font-semibold">
-                  Nezávazná poptávka
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                <Link href="/#kontakt">
+                  <Button size="lg" className="text-base font-semibold w-full">
+                    Nezávazná poptávka
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
                 <Link href="/">
                   <Button size="lg" variant="outline" className="text-base font-semibold bg-transparent w-full">
                     Zpět na hlavní stránku

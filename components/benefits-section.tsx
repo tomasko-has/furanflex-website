@@ -39,10 +39,10 @@ export function BenefitsSection() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
               Proč zvolit <span className="text-primary">FuranFlex</span>
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-pretty">
+            <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed mb-8 text-pretty">
               Kompozitní vložky FuranFlex představují moderní a spolehlivé řešení pro sanaci komínů a průduchů.
               Technologie je vyrobena z tepelně odolné pryskyřice vyztužené skleněnými vlákny.
             </p>
@@ -52,11 +52,11 @@ export function BenefitsSection() {
                 const Icon = benefit.icon
                 return (
                   <div key={benefit.title} className="space-y-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-sm flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-primary" />
+                    <div className="w-14 h-14 bg-primary/10 rounded-sm flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-primary" />
                     </div>
-                    <h3 className="font-bold">{benefit.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
+                    <h3 className="text-lg lg:text-xl font-bold">{benefit.title}</h3>
+                    <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">{benefit.description}</p>
                   </div>
                 )
               })}
@@ -65,7 +65,11 @@ export function BenefitsSection() {
 
           <div className="relative">
             <div className="aspect-[3/4] rounded-sm overflow-hidden border-2 border-border shadow-2xl">
-              <img src="/industrial-composite-material-close-up-technical.jpg" alt="FuranFlex materiál" className="w-full h-full object-cover" />
+              <img
+                src="/industrial-composite-material-close-up-technical.jpg"
+                alt="FuranFlex materiál"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="absolute top-8 -left-8 bg-accent text-accent-foreground px-6 py-4 rounded-sm shadow-xl">
               <div className="text-2xl font-bold font-mono">600°C</div>
@@ -81,3 +85,4 @@ export function BenefitsSection() {
     </section>
   )
 }
+
