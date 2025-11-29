@@ -72,7 +72,7 @@ export function CTASection() {
                 <label htmlFor="phone" className="text-sm font-medium">
                   Telefon
                 </label>
-                <Input id="phone" type="tel" placeholder="+420 123 456 789" className="bg-background" />
+                <Input id="phone" type="tel" placeholder="+420 123 456 789" className="bg-background cursor-text" />
               </div>
 
               <div className="space-y-2">
@@ -84,14 +84,14 @@ export function CTASection() {
                   placeholder="Popište váš projekt a požadavky..."
                   rows={4}
                   required
-                  className="bg-background resize-none"
+                  className="bg-background resize-none cursor-text"
                 />
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold"
+                className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold cursor-pointer"
               >
                 Odeslat poptávku
               </Button>

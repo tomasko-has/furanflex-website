@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, Star } from "lucide-react"
+import Image from "next/image"
 
 export function HeroSection() {
   const scrollToContact = () => {
@@ -19,7 +20,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center pt-16 lg:pt-20">
+    <section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-20 md:pt-12">
       {/* Background with industrial pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/30 to-background -z-10" />
       <div
@@ -31,7 +32,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-8 py-20 lg:py-32">
+      <div className="container mx-auto px-4 lg:px-8 py-6 lg:py-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-8">
             <div className="inline-block">
@@ -62,26 +63,25 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="text-base font-semibold" onClick={scrollToContact}>
+              <Button size="lg" className="text-base font-semibold cursor-pointer" onClick={scrollToContact}>
                 Nezávazná poptávka
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base font-semibold bg-transparent"
+                className="text-base font-semibold bg-transparent cursor-pointer"
                 onClick={scrollToTechnology}
               >
                 Více o technologii
               </Button>
             </div>
 
-            <div className="pt-8 space-y-6">
-              {/* Google Review Badge */}
-              <div className="flex items-center gap-6 p-6 bg-white rounded-sm border border-border shadow-lg">
+            <div className="pt-8 space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shrink-0 shadow-sm">
-                    <svg className="w-7 h-7" viewBox="0 0 24 24">
+                  <div className="shrink-0">
+                    <svg className="w-10 h-10" viewBox="0 0 24 24">
                       <path
                         fill="#4285F4"
                         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -100,66 +100,48 @@ export function HeroSection() {
                       />
                     </svg>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-2">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-1.5 mb-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                       ))}
-                      <span className="text-3xl font-bold ml-2">4.9</span>
+                      <span className="text-2xl font-bold text-gray-900 ml-2">4.9</span>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1">Based on 500+ reviews</p>
-                  </div>
-                </div>
-
-                {/* Certifications inline */}
-                <div className="hidden lg:flex items-center gap-8 ml-auto">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">ISO 9001</div>
-                    <p className="text-xs text-muted-foreground">Certifikace kvality</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">10-25 let</div>
-                    <p className="text-xs text-muted-foreground">Záruka výrobce</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">500+</div>
-                    <p className="text-xs text-muted-foreground">Realizovaných projektů</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">98%</div>
-                    <p className="text-xs text-muted-foreground">Spokojenost zákazníků</p>
+                    <p className="text-sm text-gray-600">Based on 500+ reviews</p>
                   </div>
                 </div>
               </div>
 
-              {/* Mobile certifications - shown below on smaller screens */}
-              <div className="grid grid-cols-2 gap-4 lg:hidden">
-                <div className="text-center p-4 bg-white rounded-sm border border-border">
-                  <div className="text-xl font-bold text-primary">ISO 9001</div>
-                  <p className="text-xs text-muted-foreground">Certifikace kvality</p>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
+                  <div className="text-2xl font-bold text-primary mb-1">ISO 9001</div>
+                  <p className="text-xs text-gray-600">Certifikace kvality</p>
                 </div>
-                <div className="text-center p-4 bg-white rounded-sm border border-border">
-                  <div className="text-xl font-bold text-primary">10-25 let</div>
-                  <p className="text-xs text-muted-foreground">Záruka výrobce</p>
+                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
+                  <div className="text-2xl font-bold text-primary mb-1">10-25 let</div>
+                  <p className="text-xs text-gray-600">Záruka výrobce</p>
                 </div>
-                <div className="text-center p-4 bg-white rounded-sm border border-border">
-                  <div className="text-xl font-bold text-primary">500+</div>
-                  <p className="text-xs text-muted-foreground">Realizovaných projektů</p>
+                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
+                  <div className="text-2xl font-bold text-primary mb-1">500+</div>
+                  <p className="text-xs text-gray-600">Realizovaných projektů</p>
                 </div>
-                <div className="text-center p-4 bg-white rounded-sm border border-border">
-                  <div className="text-xl font-bold text-primary">98%</div>
-                  <p className="text-xs text-muted-foreground">Spokojenost zákazníků</p>
+                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
+                  <div className="text-2xl font-bold text-primary mb-1">98%</div>
+                  <p className="text-xs text-gray-600">Spokojenost zákazníků</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] rounded-sm overflow-hidden border-2 border-primary/20 shadow-2xl">
-              <img
+            <div className="aspect-[4/3] rounded-sm overflow-hidden border-2 border-primary/20 shadow-2xl relative">
+              <Image
                 src="/industrial-chimney-pipe-installation-worker.jpg"
                 alt="FuranFlex instalace"
-                className="w-full h-full object-cover"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-sm shadow-xl">

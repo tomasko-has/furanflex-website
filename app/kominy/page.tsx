@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, Flame, Thermometer, Shield } from "lucide-react"
 import Link from "next/link"
+import { CTASection } from "@/components/cta-section"
 
 export const metadata = {
   title: "Komíny - Sanace pro dřevo a plyn | FuranFlex CZ",
@@ -167,6 +168,8 @@ export default function KominyPage() {
           </div>
         </div>
       </section>
+
+      <CTASection />
 
       <Footer />
     </main>

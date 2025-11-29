@@ -1,6 +1,20 @@
+"use client"
+
 import Link from "next/link"
 
 export function Footer() {
+  const scrollToContact = () => {
+    // If on a subpage, go to homepage first
+    if (window.location.pathname !== "/") {
+      window.location.href = "/#kontakt"
+    } else {
+      const contactSection = document.getElementById("kontakt")
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" })
+      }
+    }
+  }
+
   return (
     <footer className="bg-accent text-accent-foreground py-12 lg:py-16">
       <div className="container mx-auto px-4 lg:px-8">
@@ -67,8 +81,19 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm opacity-80">
-              <li>+420 123 456 789</li>
-              <li>info@furanflex.cz</li>
+              <li>
+                <button
+                  onClick={scrollToContact}
+                  className="hover:opacity-100 transition-opacity cursor-pointer hover:underline"
+                >
+                  +420 123 456 789
+                </button>
+              </li>
+              <li>
+                <a href="mailto:info@furanflex.cz" className="hover:opacity-100 transition-opacity">
+                  info@furanflex.cz
+                </a>
+              </li>
               <li>Praha, Česká republika</li>
             </ul>
           </div>

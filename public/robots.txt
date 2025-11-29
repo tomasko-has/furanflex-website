@@ -1,0 +1,7 @@
+# robots.txt for FuranFlex CZ
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://furanflex-website.vercel.app/sitemap.xml
