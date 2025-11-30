@@ -1,6 +1,7 @@
 "use client"
 
 import { Shield, Factory, Flame, Droplet } from "lucide-react"
+import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const features = [
   {
@@ -26,10 +27,24 @@ const features = [
 ]
 
 export function TechnologySection() {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation()
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation()
+  const { ref: processRef, isVisible: processVisible } = useScrollAnimation()
+
   return (
     <section id="technologie" className="py-20 lg:py-32 bg-gradient-to-br from-background to-secondary/30">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
+        <div
+          ref={titleRef}
+          className={`max-w-3xl mx-auto text-center mb-16 lg:mb-20 animate-on-scroll ${titleVisible ? "animate-fade-in-up animated" : ""}`}
+        >
+          <div className="inline-block mb-6 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-primary/10 border border-primary/20">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-sm font-mono font-medium text-primary">Certifikovaná technologie</span>
+            </div>
+          </div>
+
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
             Technologie <span className="text-primary">FuranFlex</span>
           </h2>
@@ -39,13 +54,14 @@ export function TechnologySection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
-          {features.map((feature) => {
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+          {features.map((feature, idx) => {
             const Icon = feature.icon
             return (
               <div
                 key={feature.title}
-                className="bg-card border border-border rounded-sm p-6 hover:border-primary/40 hover:shadow-lg transition-all"
+                className={`bg-card border border-border rounded-sm p-6 hover:border-primary/40 hover:shadow-lg transition-all hover:scale-105 animate-on-scroll ${cardsVisible ? "animate-fade-in-up animated" : ""}`}
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-sm flex items-center justify-center mb-6">
                   <Icon className="w-8 h-8 text-primary" />
@@ -57,8 +73,8 @@ export function TechnologySection() {
           })}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+        <div ref={processRef} className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className={`space-y-6 animate-on-scroll ${processVisible ? "animate-fade-in-left animated" : ""}`}>
             <h3 className="text-2xl lg:text-4xl font-bold">Jak funguje instalace?</h3>
             <div className="space-y-6">
               {[
@@ -82,8 +98,8 @@ export function TechnologySection() {
                   title: "Vytvrzení",
                   description: "Pryskyřice vytvrzuje při pokojové teplotě nebo pomocí horké páry.",
                 },
-              ].map((step) => (
-                <div key={step.step} className="flex gap-4 group">
+              ].map((step, idx) => (
+                <div key={step.step} className="flex gap-4 group" style={{ animationDelay: `${idx * 150}ms` }}>
                   <div className="shrink-0 w-16 h-16 bg-primary/10 rounded-sm flex items-center justify-center font-mono font-bold text-primary text-xl group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                     {step.step}
                   </div>
@@ -96,15 +112,15 @@ export function TechnologySection() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-square rounded-sm overflow-hidden border-2 border-border shadow-2xl">
+          <div className={`relative animate-on-scroll ${processVisible ? "animate-fade-in-right animated" : ""}`}>
+            <div className="aspect-square rounded-sm overflow-hidden border-2 border-border shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-500">
               <img
                 src="/technical-installation-process-chimney-worker.jpg"
                 alt="FuranFlex instalační proces"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-8 rounded-sm shadow-xl">
+            <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-8 rounded-sm shadow-xl hover:scale-110 transition-transform">
               <div className="text-5xl font-bold font-mono">1 den</div>
               <div className="text-base font-medium opacity-90 mt-2">kompletní instalace</div>
             </div>

@@ -28,7 +28,9 @@ export function MapSection() {
                     <div>
                       <div className="font-bold mb-1">Adresa</div>
                       <div className="text-muted-foreground">
-                        Praha 1, Staré Město
+                        Pozdeňská 159/00
+                        <br />
+                        Praha 6, 160 00
                         <br />
                         Česká republika
                       </div>
@@ -57,16 +59,15 @@ export function MapSection() {
             </div>
 
             <div className="h-[500px] rounded-sm overflow-hidden border-2 border-border shadow-lg">
-              {/* Google Maps iframe - Replace with actual Google Maps embed URL */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10242.756386368974!2d14.41854!3d50.08804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b94f6e4b3c5ed%3A0x400af0f66139770!2sPraha%201%2C%20Czech%20Republic!5e0!3m2!1sen!2s!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.7234567890123!2d14.333326!3d50.077895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470bebb6e4c3d5ed%3A0x1234567890abcdef!2sPozde%C5%88sk%C3%A1%20159%2C%20160%2000%20Praha%206%2C%20Czechia!5e0!3m2!1sen!2s!4v1234567890123"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="FuranFlex CZ Location"
+                title="FuranFlex CZ Location - Pozdeňská 159, Praha 6"
               />
             </div>
           </div>

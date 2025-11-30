@@ -3,8 +3,25 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, Star } from "lucide-react"
 import Image from "next/image"
+import { useEffect, useRef } from "react"
 
 export function HeroSection() {
+  const lottieRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    import("lottie-web").then((lottie) => {
+      if (lottieRef.current) {
+        lottie.default.loadAnimation({
+          container: lottieRef.current,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://lottie.host/c9f0a8e6-3c1c-4e4d-8f6a-2e1b3c4d5e6f/Qw9R8x7Y6z.json", // Construction/Industrial animation
+        })
+      }
+    })
+  }, [])
+
   const scrollToContact = () => {
     const contactSection = document.getElementById("kontakt")
     if (contactSection) {
@@ -32,29 +49,30 @@ export function HeroSection() {
         }}
       />
 
+      <div className="absolute top-20 right-10 w-64 h-64 opacity-10 -z-10 hidden lg:block">
+        <div ref={lottieRef} className="w-full h-full" />
+      </div>
+
       <div className="container mx-auto px-4 lg:px-8 py-6 lg:py-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-8">
-            <div className="inline-block">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-primary/10 border border-primary/20">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-sm font-mono font-medium text-primary">Certifikovaná technologie</span>
-              </div>
-            </div>
-
-            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance">
+            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance animate-fade-in-up animation-delay-100">
               Sanace komínů <span className="text-primary">bez bourání</span>
             </h1>
 
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed text-pretty max-w-xl">
+            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed text-pretty max-w-xl animate-fade-in-up animation-delay-200">
               Profesionální kompozitní vložky FuranFlex pro rekonstrukci komínů, dešťových svodů a vzduchotechniky.
               Rychlá instalace, až 25 let záruky.
             </p>
 
-            <div className="space-y-3">
+            <div className="space-y-3 animate-fade-in-up animation-delay-300">
               {["Instalace za jeden pracovní den", "Bez nutnosti bourání v patrech", "Odolné až do 600°C"].map(
-                (item) => (
-                  <div key={item} className="flex items-center gap-3">
+                (item, idx) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3"
+                    style={{ animationDelay: `${300 + idx * 100}ms` }}
+                  >
                     <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                     <span className="text-foreground font-medium">{item}</span>
                   </div>
@@ -62,7 +80,7 @@ export function HeroSection() {
               )}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up animation-delay-400">
               <Button size="lg" className="text-base font-semibold cursor-pointer" onClick={scrollToContact}>
                 Nezávazná poptávka
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -77,8 +95,8 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div className="pt-8 space-y-4">
-              <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+            <div className="pt-8 space-y-4 animate-fade-in-up animation-delay-500">
+              <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-4">
                   <div className="shrink-0">
                     <svg className="w-10 h-10" viewBox="0 0 24 24">
@@ -113,38 +131,38 @@ export function HeroSection() {
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
-                  <div className="text-2xl font-bold text-primary mb-1">ISO 9001</div>
-                  <p className="text-xs text-gray-600">Certifikace kvality</p>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
-                  <div className="text-2xl font-bold text-primary mb-1">10-25 let</div>
-                  <p className="text-xs text-gray-600">Záruka výrobce</p>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
-                  <div className="text-2xl font-bold text-primary mb-1">500+</div>
-                  <p className="text-xs text-gray-600">Realizovaných projektů</p>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
-                  <div className="text-2xl font-bold text-primary mb-1">98%</div>
-                  <p className="text-xs text-gray-600">Spokojenost zákazníků</p>
-                </div>
+                {[
+                  { label: "ISO 9001", desc: "Certifikace kvality" },
+                  { label: "10-25 let", desc: "Záruka výrobce" },
+                  { label: "500+", desc: "Realizovaných projektů" },
+                  { label: "98%", desc: "Spokojenost zákazníků" },
+                ].map((item, idx) => (
+                  <div
+                    key={item.label}
+                    className="bg-white rounded-lg border border-gray-200 p-4 text-center shadow-sm hover:border-primary/40 hover:shadow-md transition-all hover:scale-105"
+                    style={{ animationDelay: `${500 + idx * 100}ms` }}
+                  >
+                    <div className="text-2xl font-bold text-primary mb-1">{item.label}</div>
+                    <p className="text-xs text-gray-600">{item.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-sm overflow-hidden border-2 border-primary/20 shadow-2xl relative">
+          <div className="relative animate-fade-in-right animation-delay-200">
+            <div className="aspect-[4/3] rounded-sm overflow-hidden border-2 border-primary/20 shadow-2xl relative hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-500">
               <Image
                 src="/industrial-chimney-pipe-installation-worker.jpg"
                 alt="FuranFlex instalace"
                 fill
                 priority
+                fetchPriority="high"
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-sm shadow-xl">
+            <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-sm shadow-xl animate-scale-in animation-delay-600 hover:scale-110 transition-transform">
               <div className="text-4xl font-bold font-mono">25+</div>
               <div className="text-sm font-medium opacity-90">let záruky</div>
             </div>

@@ -1,7 +1,10 @@
+"use client"
+
 import { Flame, CloudRain, Wind, Factory } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const services = [
   {
@@ -35,10 +38,16 @@ const services = [
 ]
 
 export function ServicesSection() {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation()
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation()
+
   return (
     <section id="sluzby" className="py-20 lg:py-32 bg-secondary/30">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
+        <div
+          ref={titleRef}
+          className={`max-w-3xl mx-auto text-center mb-16 lg:mb-20 animate-on-scroll ${titleVisible ? "animate-fade-in-up animated" : ""}`}
+        >
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
             Komplexní řešení pro <span className="text-primary">průduchy a komíny</span>
           </h2>
@@ -47,13 +56,14 @@ export function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon
             const CardContent = (
               <div
                 key={index}
-                className={`bg-card border border-border rounded-sm p-6 hover:border-primary/40 transition-all hover:shadow-lg group h-full ${service.href ? "cursor-pointer" : ""}`}
+                className={`bg-card border border-border rounded-sm p-6 hover:border-primary/40 transition-all hover:shadow-lg hover:scale-105 group h-full animate-on-scroll ${cardsVisible ? "animate-fade-in-up animated" : ""} ${service.href ? "cursor-pointer" : ""}`}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-sm flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                   <Icon className="w-8 h-8 text-primary" />

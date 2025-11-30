@@ -82,15 +82,12 @@ export function Footer() {
             <h4 className="font-bold mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm opacity-80">
               <li>
-                <button
-                  onClick={scrollToContact}
-                  className="hover:opacity-100 transition-opacity cursor-pointer hover:underline"
-                >
+                <a href="tel:+420123456789" className="hover:opacity-100 transition-opacity hover:underline">
                   +420 123 456 789
-                </button>
+                </a>
               </li>
               <li>
-                <a href="mailto:info@furanflex.cz" className="hover:opacity-100 transition-opacity">
+                <a href="mailto:info@furanflex.cz" className="hover:opacity-100 transition-opacity hover:underline">
                   info@furanflex.cz
                 </a>
               </li>
@@ -102,10 +99,10 @@ export function Footer() {
         <div className="border-t border-accent-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-80">
           <div>© 2025 FuranFlex CZ. Všechna práva vyhrazena.</div>
           <div className="flex gap-6">
-            <Link href="/#kontakt" className="hover:opacity-100 transition-opacity">
+            <Link href="/ochrana-osobnich-udaju" className="hover:opacity-100 transition-opacity">
               Ochrana osobních údajů
             </Link>
-            <Link href="/#kontakt" className="hover:opacity-100 transition-opacity">
+            <Link href="/obchodni-podminky" className="hover:opacity-100 transition-opacity">
               Obchodní podmínky
             </Link>
           </div>

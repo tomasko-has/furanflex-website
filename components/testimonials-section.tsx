@@ -1,7 +1,9 @@
 "use client"
 
-import { Star, Quote } from "lucide-react"
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
 
 const testimonials = [
   {
@@ -34,9 +36,52 @@ const testimonials = [
     rating: 5,
     date: "Září 2024",
   },
+  {
+    name: "Martin Černý",
+    role: "Majitel penzionu",
+    content:
+      "Sanace komína pomocí FuranFlex technologie nás mile překvapila. Žádný prach, žádný hluk a hotovo za pár hodin.",
+    rating: 5,
+    date: "Srpen 2024",
+  },
+  {
+    name: "Lucie Horáková",
+    role: "Majitelka rodinné vily",
+    content: "Perfektní práce! Svody byly v havarijním stavu a díky FuranFlex jsme je zachránili bez bourání stěn.",
+    rating: 5,
+    date: "Červenec 2024",
+  },
 ]
 
 export function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const itemsPerView = typeof window !== "undefined" && window.innerWidth >= 768 ? 2 : 1
+
+  const maxIndex = Math.ceil(testimonials.length / itemsPerView) - 1
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+  }
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(nextSlide, 5000)
+      return () => clearInterval(interval)
+    }
+  }, [isPaused, currentIndex])
+
+  const visibleTestimonials = testimonials.slice(
+    currentIndex * itemsPerView,
+    currentIndex * itemsPerView + itemsPerView,
+  )
+
   return (
     <section className="py-20 lg:py-32 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
@@ -52,29 +97,68 @@ export function TestimonialsSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-2 hover:border-primary/50 transition-colors">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Quote className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-1 mb-2">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
+          <div className="relative" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+            <div className="grid md:grid-cols-2 gap-8 transition-all duration-500">
+              {visibleTestimonials.map((testimonial, index) => (
+                <Card
+                  key={currentIndex * itemsPerView + index}
+                  className="border-2 hover:border-primary/50 transition-colors animate-in fade-in duration-500"
+                >
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <Quote className="w-6 h-6 text-primary" />
                       </div>
-                      <div className="font-bold text-lg">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-1 mb-2">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          ))}
+                        </div>
+                        <div className="font-bold text-lg">{testimonial.name}</div>
+                        <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{testimonial.content}</p>
-                  <div className="text-xs text-muted-foreground">{testimonial.date}</div>
-                </CardContent>
-              </Card>
-            ))}
+                    <p className="text-muted-foreground leading-relaxed mb-4">{testimonial.content}</p>
+                    <div className="text-xs text-muted-foreground">{testimonial.date}</div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={prevSlide}
+                className="rounded-full border-2 hover:border-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+
+              {/* Pagination dots */}
+              <div className="flex gap-2">
+                {[...Array(maxIndex + 1)].map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentIndex ? "bg-primary w-8" : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={nextSlide}
+                className="rounded-full border-2 hover:border-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
           </div>
 
           <div className="text-center mt-12">
