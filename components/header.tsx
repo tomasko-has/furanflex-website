@@ -6,11 +6,12 @@ import { useState, useEffect } from "react"
 import { Menu, X, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
-  const [language, setLanguage] = useState("CZ")
+  const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -63,7 +64,7 @@ export function Header() {
                 activeSection === "technologie" ? "text-primary" : ""
               }`}
             >
-              Technologie
+              {t.nav.technology}
             </button>
             <button
               onClick={() => scrollToSection("sluzby")}
@@ -71,7 +72,7 @@ export function Header() {
                 activeSection === "sluzby" ? "text-primary" : ""
               }`}
             >
-              Služby
+              {t.nav.services}
             </button>
             <button
               onClick={() => scrollToSection("vyhody")}
@@ -79,7 +80,7 @@ export function Header() {
                 activeSection === "vyhody" ? "text-primary" : ""
               }`}
             >
-              Výhody
+              {t.nav.benefits}
             </button>
             <button
               onClick={() => scrollToSection("kontakt")}
@@ -87,22 +88,22 @@ export function Header() {
                 activeSection === "kontakt" ? "text-primary" : ""
               }`}
             >
-              Kontakt
+              {t.nav.contact}
             </button>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2 bg-transparent">
                   <Globe className="h-4 w-4" />
-                  {language}
+                  {language.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage("CZ")} className="cursor-pointer">
+                <DropdownMenuItem onClick={() => setLanguage("cs")} className="cursor-pointer">
                   <span className="mr-2">🇨🇿</span>
                   Čeština
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("EN")} className="cursor-pointer">
+                <DropdownMenuItem onClick={() => setLanguage("en")} className="cursor-pointer">
                   <span className="mr-2">🇬🇧</span>
                   English
                 </DropdownMenuItem>
@@ -119,11 +120,11 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLanguage("CZ")} className="cursor-pointer">
+                <DropdownMenuItem onClick={() => setLanguage("cs")} className="cursor-pointer">
                   <span className="mr-2">🇨🇿</span>
                   Čeština
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("EN")} className="cursor-pointer">
+                <DropdownMenuItem onClick={() => setLanguage("en")} className="cursor-pointer">
                   <span className="mr-2">🇬🇧</span>
                   English
                 </DropdownMenuItem>
@@ -146,7 +147,7 @@ export function Header() {
                   activeSection === "technologie" ? "text-primary" : ""
                 }`}
               >
-                Technologie
+                {t.nav.technology}
               </button>
               <button
                 onClick={() => scrollToSection("sluzby")}
@@ -154,7 +155,7 @@ export function Header() {
                   activeSection === "sluzby" ? "text-primary" : ""
                 }`}
               >
-                Služby
+                {t.nav.services}
               </button>
               <button
                 onClick={() => scrollToSection("vyhody")}
@@ -162,7 +163,7 @@ export function Header() {
                   activeSection === "vyhody" ? "text-primary" : ""
                 }`}
               >
-                Výhody
+                {t.nav.benefits}
               </button>
               <button
                 onClick={() => scrollToSection("kontakt")}
@@ -170,7 +171,7 @@ export function Header() {
                   activeSection === "kontakt" ? "text-primary" : ""
                 }`}
               >
-                Kontakt
+                {t.nav.contact}
               </button>
             </nav>
           </div>

@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CookieConsent } from "@/components/cookie-consent"
+import { LanguageProvider } from "@/contexts/language-context"
 import "./globals.css"
 
 // Using Inter for modern industrial look and JetBrains Mono for technical elements
@@ -58,9 +59,11 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
-        <CookieConsent />
+        <LanguageProvider>
+          {children}
+          <Analytics />
+          <CookieConsent />
+        </LanguageProvider>
       </body>
     </html>
   )

@@ -56,8 +56,17 @@ const testimonials = [
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [itemsPerView, setItemsPerView] = useState(1)
 
-  const itemsPerView = typeof window !== "undefined" && window.innerWidth >= 768 ? 2 : 1
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerView(window.innerWidth >= 768 ? 2 : 1)
+    }
+
+    handleResize() // Set initial value
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const maxIndex = Math.ceil(testimonials.length / itemsPerView) - 1
 

@@ -1,12 +1,35 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Phone, Mail, MapPin } from "lucide-react"
+import { useEffect, useRef } from "react"
 
 export function CTASection() {
+  const lottieRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    import("lottie-web").then((lottie) => {
+      if (lottieRef.current) {
+        lottie.default.loadAnimation({
+          container: lottieRef.current,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://lottie.host/embed/a8f3d2e1-5c4b-4a3d-8e2f-1b9c6d7a5e8f/animation.json",
+        })
+      }
+    })
+  }, [])
+
   return (
-    <section id="kontakt" className="py-20 lg:py-32 bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section id="kontakt" className="py-20 lg:py-32 bg-primary text-primary-foreground relative overflow-hidden">
+      <div className="absolute -top-20 -right-20 w-96 h-96 opacity-10 pointer-events-none hidden lg:block">
+        <div ref={lottieRef} className="w-full h-full" />
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
             <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-balance">Máte zájem o nezávaznou konzultaci?</h2>

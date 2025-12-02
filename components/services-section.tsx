@@ -12,28 +12,28 @@ const services = [
     title: "Dešťové svody",
     description: "Oprava a sanace dešťových svodů bez bourání v jednotlivých patrech. Instalace za jeden pracovní den.",
     features: ["Bez bourání", "Rychlá instalace", "Trvalé řešení"],
-    href: "/destove-svody",
+    href: "/services/destove-svody",
   },
   {
     icon: Flame,
     title: "Komíny na dřevo",
     description: "Vložky pro krby, krbové vložky a kamna. Odolné až do 600°C s dlouhou životností.",
     features: ["Tepelná odolnost", "Certifikováno", "Bezpečné"],
-    href: "/kominy",
+    href: "/services/kominy-na-drevo",
   },
   {
     icon: Factory,
     title: "Komíny na plyn",
     description: "Vhodné pro všechny typy plynových kotlů. Splňuje všechny normové požadavky.",
     features: ["Vzduchotěsné", "Normy EU", "Chemicky odolné"],
-    href: "/kominy",
+    href: "/services/kominy-na-plyn",
   },
   {
     icon: Wind,
     title: "Vzduchotechnika",
     description: "Vertikální vedení vzduchotechniky odolné vůči chemikáliím a korozi.",
     features: ["Hladký povrch", "Odolnost", "Dlouhá životnost"],
-    href: null,
+    href: "/services/vzduchotechnika",
   },
 ]
 

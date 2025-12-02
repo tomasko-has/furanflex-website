@@ -41,6 +41,13 @@ export function BenefitsSection() {
   const { ref: benefitsRef, isVisible: benefitsVisible } = useScrollAnimation()
   const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation()
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("kontakt")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section id="vyhody" className="py-20 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8">
@@ -73,6 +80,23 @@ export function BenefitsSection() {
                   </div>
                 )
               })}
+            </div>
+
+            <div className="mt-12 p-8 bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 rounded-sm">
+              <h3 className="text-2xl font-bold mb-3">Připraveni začít?</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Získejte profesionální řešení pro sanaci vašeho komína. Kontaktujte nás pro nezávaznou konzultaci a
+                cenovou nabídku.
+              </p>
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg rounded-sm shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer"
+              >
+                <span>Nezávazná poptávka</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
             </div>
           </div>
 
