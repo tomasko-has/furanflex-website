@@ -3,18 +3,6 @@
 import Link from "next/link"
 
 export function Footer() {
-  const scrollToContact = () => {
-    // If on a subpage, go to homepage first
-    if (window.location.pathname !== "/") {
-      window.location.href = "/#kontakt"
-    } else {
-      const contactSection = document.getElementById("kontakt")
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" })
-      }
-    }
-  }
-
   return (
     <footer className="bg-accent text-accent-foreground py-12 lg:py-16">
       <div className="container mx-auto px-4 lg:px-8">
@@ -30,22 +18,22 @@ export function Footer() {
             <h4 className="font-bold mb-4">Služby</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/destove-svody" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/services/destove-svody" className="opacity-80 hover:opacity-100 transition-opacity">
                   Dešťové svody
                 </Link>
               </li>
               <li>
-                <Link href="/kominy" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/services/kominy-na-drevo" className="opacity-80 hover:opacity-100 transition-opacity">
                   Komíny na dřevo
                 </Link>
               </li>
               <li>
-                <Link href="/kominy" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/services/kominy-na-plyn" className="opacity-80 hover:opacity-100 transition-opacity">
                   Komíny na plyn
                 </Link>
               </li>
               <li>
-                <Link href="/#sluzby" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/services/vzduchotechnika" className="opacity-80 hover:opacity-100 transition-opacity">
                   Vzduchotechnika
                 </Link>
               </li>
@@ -61,13 +49,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#realizovane-projekty" className="opacity-80 hover:opacity-100 transition-opacity">
+                <Link href="/#trust" className="opacity-80 hover:opacity-100 transition-opacity">
                   Reference
                 </Link>
               </li>
               <li>
-                <Link href="/#vyhody" className="opacity-80 hover:opacity-100 transition-opacity">
-                  Certifikáty
+                <Link href="/#partneři" className="opacity-80 hover:opacity-100 transition-opacity">
+                  Partneři
                 </Link>
               </li>
               <li>

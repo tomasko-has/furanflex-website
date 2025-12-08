@@ -96,8 +96,7 @@ export function HeroSection() {
             </div>
 
             <div className="pt-8 space-y-6 animate-fade-in-up animation-delay-500">
-              {/* Google Rating Card - Premium Design */}
-              <div className="max-w-xs mx-auto">
+              <div className="max-w-xs mx-auto lg:mx-0">
                 <div className="relative bg-gradient-to-br from-white via-blue-50/30 to-white rounded-2xl border border-blue-100 p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-blue-200 overflow-hidden group">
                   {/* Subtle background pattern */}
                   <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(circle_at_1px_1px,rgb(0,0,0)_1px,transparent_0)] bg-[length:20px_20px]" />
@@ -146,7 +145,6 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Stats Grid - Modern Cards */}
               <div className="grid grid-cols-3 gap-3">
                 {[
                   {
@@ -166,8 +164,8 @@ export function HeroSection() {
                     textColor: "text-emerald-700",
                   },
                   {
-                    label: "98%",
-                    desc: "Spokojenost zákazníků",
+                    label: "15+ let",
+                    desc: "Zkušeností v oboru",
                     gradient: "from-amber-500/10 to-amber-600/5",
                     border: "border-amber-200/50",
                     hoverBorder: "hover:border-amber-400",

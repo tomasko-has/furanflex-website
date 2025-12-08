@@ -3,13 +3,14 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
-import { Menu, X, Globe } from "lucide-react"
+import { Menu, X, Globe, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useLanguage } from "@/contexts/language-context"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
   const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
@@ -48,6 +49,13 @@ export function Header() {
     setIsMenuOpen(false)
   }
 
+  const services = [
+    { href: "/services/destove-svody", label: "Dešťové svody" },
+    { href: "/services/kominy-na-drevo", label: "Komíny na dřevo" },
+    { href: "/services/kominy-na-plyn", label: "Komíny na plyn" },
+    { href: "/services/vzduchotechnika", label: "Vzduchotechnika" },
+  ]
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 lg:px-8">
@@ -66,14 +74,27 @@ export function Header() {
             >
               {t.nav.technology}
             </button>
-            <button
-              onClick={() => scrollToSection("sluzby")}
-              className={`text-base lg:text-lg font-medium hover:text-primary transition-colors ${
-                activeSection === "sluzby" ? "text-primary" : ""
-              }`}
-            >
-              {t.nav.services}
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className={`text-base lg:text-lg font-medium hover:text-primary transition-colors flex items-center gap-1 ${
+                    pathname.startsWith("/services") ? "text-primary" : ""
+                  }`}
+                >
+                  {t.nav.services}
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                {services.map((service) => (
+                  <DropdownMenuItem key={service.href} asChild>
+                    <Link href={service.href} className="cursor-pointer w-full">
+                      {service.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button
               onClick={() => scrollToSection("vyhody")}
               className={`text-base lg:text-lg font-medium hover:text-primary transition-colors ${
@@ -90,7 +111,6 @@ export function Header() {
             >
               {t.nav.contact}
             </button>
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2 bg-transparent">
@@ -130,7 +150,6 @@ export function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -139,7 +158,7 @@ export function Header() {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border shadow-lg">
+          <div className="md:hidden fixed top-16 left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto">
             <nav className="flex flex-col p-4 space-y-4">
               <button
                 onClick={() => scrollToSection("technologie")}
@@ -149,14 +168,31 @@ export function Header() {
               >
                 {t.nav.technology}
               </button>
-              <button
-                onClick={() => scrollToSection("sluzby")}
-                className={`text-lg font-medium hover:text-primary transition-colors text-left py-2 ${
-                  activeSection === "sluzby" ? "text-primary" : ""
-                }`}
-              >
-                {t.nav.services}
-              </button>
+              <div>
+                <button
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  className={`text-lg font-medium hover:text-primary transition-colors text-left py-2 w-full flex items-center justify-between ${
+                    pathname.startsWith("/services") ? "text-primary" : ""
+                  }`}
+                >
+                  {t.nav.services}
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
+                </button>
+                {isServicesOpen && (
+                  <div className="ml-4 mt-2 space-y-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className="block text-base text-muted-foreground hover:text-primary transition-colors py-2"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {service.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button
                 onClick={() => scrollToSection("vyhody")}
                 className={`text-lg font-medium hover:text-primary transition-colors text-left py-2 ${
